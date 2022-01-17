@@ -12,13 +12,13 @@ jobs:
   ReleasePublish:
     runs-on: [self-hosted, style-checker]
     steps:
-      - name: Set envs
-        run: |
-          cat >> "$GITHUB_ENV" << 'EOF'
-          JFROG_API_KEY=${{ secrets.JFROG_KEY_API_PACKAGES }}
-          TEMP_PATH=${{runner.temp}}/release_packages
-          REPO_COPY=${{runner.temp}}/release_packages/ClickHouse
-          EOF
+    - name: Set envs
+      run: |
+        cat >> "$GITHUB_ENV" << 'EOF'
+        JFROG_API_KEY=${{ secrets.JFROG_KEY_API_PACKAGES }}
+        TEMP_PATH=${{runner.temp}}/release_packages
+        REPO_COPY=${{runner.temp}}/release_packages/ClickHouse
+        EOF
     - name: Check out repository code
       uses: actions/checkout@v2
     - name: Download packages and push to Artifactory
